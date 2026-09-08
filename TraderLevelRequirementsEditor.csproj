@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>TraderLevelRequirementsEditor</AssemblyName>
+    <RootNamespace>TraderLevelRequirementsEditor</RootNamespace>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>14.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SPTarkov.Common">
+      <HintPath>C:\SPT 4.1\SPT_Runtime\SPTarkov.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SPTarkov.DI">
+      <HintPath>C:\SPT 4.1\SPT_Runtime\SPTarkov.DI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SPTarkov.Server.Core">
+      <HintPath>C:\SPT 4.1\SPT_Runtime\SPTarkov.Server.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SemanticVersioning">
+      <HintPath>C:\SPT 4.1\SPT_Runtime\SemanticVersioning.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

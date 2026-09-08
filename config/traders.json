@@ -1,0 +1,185 @@
+﻿{
+  "traders": {
+    "54cb50c76803fa8b248b4571": {
+      "name": "Prapor",
+      "loyaltyLevels": {
+        "1": {
+          "minLevel": 0,
+          "minSalesSum": 0,
+          "minStanding": 0
+        },
+        "2": {
+          "minLevel": 15,
+          "minSalesSum": 750000,
+          "minStanding": 0.2
+        },
+        "3": {
+          "minLevel": 26,
+          "minSalesSum": 1500000,
+          "minStanding": 0.35
+        },
+        "4": {
+          "minLevel": 36,
+          "minSalesSum": 2300000,
+          "minStanding": 0.5
+        }
+      }
+    },
+
+    "54cb57776803fa99248b456e": {
+      "name": "Therapist",
+      "loyaltyLevels": {
+        "1": {
+          "minLevel": 0,
+          "minSalesSum": 0,
+          "minStanding": 0
+        },
+        "2": {
+          "minLevel": 13,
+          "minSalesSum": 400000,
+          "minStanding": 0.15
+        },
+        "3": {
+          "minLevel": 24,
+          "minSalesSum": 700000,
+          "minStanding": 0.3
+        },
+        "4": {
+          "minLevel": 35,
+          "minSalesSum": 900000,
+          "minStanding": 0.6
+        }
+      }
+    },
+
+    "58330581ace78e27b8b10cee": {
+      "name": "Skier",
+      "loyaltyLevels": {
+        "1": {
+          "minLevel": 1,
+          "minSalesSum": 0,
+          "minStanding": 0
+        },
+        "2": {
+          "minLevel": 15,
+          "minSalesSum": 800000,
+          "minStanding": 0.2
+        },
+        "3": {
+          "minLevel": 28,
+          "minSalesSum": 1600000,
+          "minStanding": 0.4
+        },
+        "4": {
+          "minLevel": 38,
+          "minSalesSum": 2600000,
+          "minStanding": 0.75
+        }
+      }
+    },
+
+    "5935c25fb3acc3127c3d8cd9": {
+      "name": "Peacekeeper",
+      "loyaltyLevels": {
+        "1": {
+          "minLevel": 1,
+          "minSalesSum": 0,
+          "minStanding": 0
+        },
+        "2": {
+          "minLevel": 14,
+          "minSalesSum": 11000,
+          "minStanding": 0
+        },
+        "3": {
+          "minLevel": 23,
+          "minSalesSum": 25000,
+          "minStanding": 0.33
+        },
+        "4": {
+          "minLevel": 37,
+          "minSalesSum": 32000,
+          "minStanding": 0.6
+        }
+      }
+    },
+
+    "5a7c2eca46aef81a7ca2145d": {
+      "name": "Mechanic",
+      "loyaltyLevels": {
+        "1": {
+          "minLevel": 1,
+          "minSalesSum": 0,
+          "minStanding": 0
+        },
+        "2": {
+          "minLevel": 20,
+          "minSalesSum": 750000,
+          "minStanding": 0.15
+        },
+        "3": {
+          "minLevel": 30,
+          "minSalesSum": 1600000,
+          "minStanding": 0.30
+        },
+        "4": {
+          "minLevel": 40,
+          "minSalesSum": 2500000,
+          "minStanding": 0.6
+        }
+      }
+    },
+
+    "5ac3b934156ae10c4430e83c": {
+      "name": "Ragman",
+      "loyaltyLevels": {
+        "1": {
+          "minLevel": 1,
+          "minSalesSum": 0,
+          "minStanding": 0
+        },
+        "2": {
+          "minLevel": 17,
+          "minSalesSum": 750000,
+          "minStanding": 0
+        },
+        "3": {
+          "minLevel": 32,
+          "minSalesSum": 1600000,
+          "minStanding": 0.30
+        },
+        "4": {
+          "minLevel": 42,
+          "minSalesSum": 2500000,
+          "minStanding": 0.6
+        }
+      }
+    },
+
+    "5c0647fdd443bc2504c2d371": {
+      "name": "Jaeger",
+      "loyaltyLevels": {
+        "1": {
+          "minLevel": 1,
+          "minSalesSum": 0,
+          "minStanding": 0
+        },
+        "2": {
+          "minLevel": 15,
+          "minSalesSum": 560000,
+          "minStanding": 0.2
+        },
+        "3": {
+          "minLevel": 22,
+          "minSalesSum": 1125000,
+          "minStanding": 0.35
+        },
+        "4": {
+          "minLevel": 33,
+          "minSalesSum": 1725000,
+          "minStanding": 0.5
+        }
+      }
+    }
+  }
+}
