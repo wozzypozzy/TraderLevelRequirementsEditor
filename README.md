@@ -20,14 +20,6 @@ A very small mod I created to customize trader loyalty level requirements since 
 
    `SPT_Runtime/user/mods`
 
-## Building
-
-The project references assemblies from your SPT installation. Set the `SPT_RUNTIME_PATH` environment variable to your `SPT_Runtime` folder, or pass the path as an MSBuild property:
-
-```powershell
-dotnet build .\TraderLevelRequirementsEditor.csproj --configuration Release -p:SptRuntimePath="C:\path\to\SPT_Runtime"
-```
-
 ## Configuration
 
 Edit:
