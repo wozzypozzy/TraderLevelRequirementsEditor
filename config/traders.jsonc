@@ -1,0 +1,213 @@
+﻿{
+  "traders": {
+    "54cb50c76803fa8b248b4571": {
+      "name": "Prapor",
+      "refreshSeconds": {
+        "min": 7000, // default 7000
+        "max": 13500 // default 13500
+      },
+      "loyaltyLevels": {
+        "1": {
+          "minLevel": 0,
+          "minSalesSum": 0,
+          "minStanding": 0
+        },
+        "2": {
+          "minLevel": 15, // default 15
+          "minSalesSum": 750000, // default 750000
+          "minStanding": 0.2 //default 0.2
+        },
+        "3": {
+          "minLevel": 26, // default 26
+          "minSalesSum": 1500000, // default 1500000
+          "minStanding": 0.35 // default 0.35
+        },
+        "4": {
+          "minLevel": 36, // default 36
+          "minSalesSum": 2300000, // default 2300000
+          "minStanding": 0.5 // default 0.5
+        }
+      }
+    },
+
+    "54cb57776803fa99248b456e": {
+      "name": "Therapist",
+      "refreshSeconds": {
+        "min": 3000, // default 3000
+        "max": 9500 // default 9500
+      },
+      "loyaltyLevels": {
+        "1": {
+          "minLevel": 0,
+          "minSalesSum": 0,
+          "minStanding": 0
+        },
+        "2": {
+          "minLevel": 13, // default 13
+          "minSalesSum": 400000, // default 400000
+          "minStanding": 0.15 // default 0.15
+        },
+        "3": {
+          "minLevel": 24, // default 24
+          "minSalesSum": 700000, // default 700000
+          "minStanding": 0.3 // default 0.3
+        },
+        "4": {
+          "minLevel": 35, // default 35
+          "minSalesSum": 900000, // default 900000
+          "minStanding": 0.6 // default 0.6
+        }
+      }
+    },
+
+    "58330581ace78e27b8b10cee": {
+      "name": "Skier",
+      "refreshSeconds": {
+        "min": 5000, // default 5000
+        "max": 9000 // default 9000
+      },
+      "loyaltyLevels": {
+        "1": {
+          "minLevel": 1,
+          "minSalesSum": 0,
+          "minStanding": 0
+        },
+        "2": {
+          "minLevel": 15, //default 15
+          "minSalesSum": 800000, // default 800000
+          "minStanding": 0.2 // default 0.2
+        },
+        "3": {
+          "minLevel": 28, // default 28
+          "minSalesSum": 1600000, // default 1600000
+          "minStanding": 0.4 // default 0.4
+        },
+        "4": {
+          "minLevel": 38, // default 38
+          "minSalesSum": 2600000, // default 2600000
+          "minStanding": 0.75 // default 0.75
+        }
+      }
+    },
+
+    "5935c25fb3acc3127c3d8cd9": {
+      "name": "Peacekeeper",
+      "refreshSeconds": {
+        "min": 2000, // default 2000
+        "max": 15000 // default 15000
+      },
+      "loyaltyLevels": {
+        "1": {
+          "minLevel": 1,
+          "minSalesSum": 0,
+          "minStanding": 0
+        },
+        "2": {
+          "minLevel": 14, //default 14
+          "minSalesSum": 11000, // default 11000
+          "minStanding": 0 // default 0
+        },
+        "3": {
+          "minLevel": 23, // default 23
+          "minSalesSum": 25000, // default 25000
+          "minStanding": 0.33 // default 0.33
+        },
+        "4": {
+          "minLevel": 37, // default 37
+          "minSalesSum": 32000, // default 32000
+          "minStanding": 0.6 // default 0.6
+        }
+      }
+    },
+
+    "5a7c2eca46aef81a7ca2145d": {
+      "name": "Mechanic",
+      "refreshSeconds": {
+        "min": 6500, // default 6500
+        "max": 13500 // default 13500
+      },
+      "loyaltyLevels": {
+        "1": {
+          "minLevel": 1,
+          "minSalesSum": 0,
+          "minStanding": 0
+        },
+        "2": {
+          "minLevel": 20, //default 20
+          "minSalesSum": 750000, // default 750000
+          "minStanding": 0.15 // default 0.15
+        },
+        "3": {
+          "minLevel": 30, // default 30
+          "minSalesSum": 1600000, // default 1600000
+          "minStanding": 0.30 // default 0.30
+        },
+        "4": {
+          "minLevel": 40, // default 40
+          "minSalesSum": 2500000, // default 2500000
+          "minStanding": 0.6 // default 0.6
+        }
+      }
+    },
+
+    "5ac3b934156ae10c4430e83c": {
+      "name": "Ragman",
+      "refreshSeconds": {
+        "min": 6500, // default 6500
+        "max": 15000 // default 15000
+      },
+      "loyaltyLevels": {
+        "1": {
+          "minLevel": 1,
+          "minSalesSum": 0,
+          "minStanding": 0
+        },
+        "2": {
+          "minLevel": 17, // default 17
+          "minSalesSum": 750000, // default 750000
+          "minStanding": 0 // default 0
+        },
+        "3": {
+          "minLevel": 32, // default 32
+          "minSalesSum": 1600000, // default 1600000
+          "minStanding": 0.30 // default 0.30
+        },
+        "4": {
+          "minLevel": 42, // default 42
+          "minSalesSum": 2500000, // default 2500000
+          "minStanding": 0.6 // default 0.6
+        }
+      }
+    },
+
+    "5c0647fdd443bc2504c2d371": {
+      "name": "Jaeger",
+      "refreshSeconds": {
+        "min": 2000, // default 2000
+        "max": 5500 // default 5500
+      },
+      "loyaltyLevels": {
+        "1": {
+          "minLevel": 1,
+          "minSalesSum": 0,
+          "minStanding": 0
+        },
+        "2": {
+          "minLevel": 15, // default 15
+          "minSalesSum": 560000, // default 560000
+          "minStanding": 0.2 // default 0.2
+        },
+        "3": {
+          "minLevel": 22, // default 22
+          "minSalesSum": 1125000, // default 1125000
+          "minStanding": 0.35 // default 0.35
+        },
+        "4": {
+          "minLevel": 33, // default 33
+          "minSalesSum": 1725000, // default 1725000
+          "minStanding": 0.5 // default 0.5
+        }
+      }
+    }
+  }
+}

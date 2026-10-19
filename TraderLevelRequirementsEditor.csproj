@@ -7,23 +7,30 @@
     <LangVersion>14.0</LangVersion>
     <Nullable>enable</Nullable>
     <OutputPath>bin\</OutputPath>
+    <SptRuntimePath Condition="'$(SptRuntimePath)' == ''">$(SPT_RUNTIME_PATH)</SptRuntimePath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SPTarkov.Common">
-      <HintPath>C:\SPT 4.1\SPT_Runtime\SPTarkov.Common.dll</HintPath>
+      <HintPath>$(SptRuntimePath)\SPTarkov.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SPTarkov.DI">
-      <HintPath>C:\SPT 4.1\SPT_Runtime\SPTarkov.DI.dll</HintPath>
+      <HintPath>$(SptRuntimePath)\SPTarkov.DI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SPTarkov.Server.Core">
-      <HintPath>C:\SPT 4.1\SPT_Runtime\SPTarkov.Server.Core.dll</HintPath>
+      <HintPath>$(SptRuntimePath)\SPTarkov.Server.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SemanticVersioning">
-      <HintPath>C:\SPT 4.1\SPT_Runtime\SemanticVersioning.dll</HintPath>
+      <HintPath>$(SptRuntimePath)\SemanticVersioning.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
+  <Target Name="ValidateSptRuntimePath" BeforeTargets="ResolveReferences">
+    <Error Condition="'$(SptRuntimePath)' == ''"
+           Text="Set the SPT_RUNTIME_PATH environment variable or pass -p:SptRuntimePath=&quot;path\to\SPT_Runtime&quot; when building." />
+    <Error Condition="!Exists('$(SptRuntimePath)\SPTarkov.Common.dll') or !Exists('$(SptRuntimePath)\SPTarkov.DI.dll') or !Exists('$(SptRuntimePath)\SPTarkov.Server.Core.dll') or !Exists('$(SptRuntimePath)\SemanticVersioning.dll')"
+           Text="SPT runtime assemblies were not found in '$(SptRuntimePath)'. Set SptRuntimePath to your SPT_Runtime folder." />
+  </Target>
 </Project>

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,7 +13,9 @@ using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Tables;
+using SptTraderConfig = SPTarkov.Server.Core.Models.Spt.Config.TraderConfig;
 
 namespace TraderLevelRequirementsEditor;
 
@@ -23,15 +28,23 @@ public sealed class TraderLevelRequirementsEditor : IOnUpdate
 
     public TraderLevelRequirementsEditor(
         TradersTable tradersTable,
+        SptTraderConfig serverTraderConfig,
         ModHelper modHelper,
         ISptLogger<TraderLevelRequirementsEditor> logger)
     {
         _logger = logger;
 
         string modFolder = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
-        TraderConfig config = modHelper.GetJsonDataFromFile<TraderConfig>(modFolder, "config/traders.json");
+        string configPath = System.IO.Path.Combine(modFolder, "config", "traders.jsonc");
+        TraderEditorConfig config = JsonSerializer.Deserialize<TraderEditorConfig>(
+            File.ReadAllText(configPath),
+            new JsonSerializerOptions
+            {
+                AllowTrailingCommas = true,
+                ReadCommentHandling = JsonCommentHandling.Skip
+            }) ?? throw new InvalidOperationException($"Configuration file contains no JSON data: {configPath}");
 
-        ApplyPatches(tradersTable, config);
+        ApplyPatches(tradersTable, serverTraderConfig, config);
     }
 
     public Task<bool> OnUpdateAsync(long secondsSinceLastRun, CancellationToken cancellationToken)
@@ -39,11 +52,12 @@ public sealed class TraderLevelRequirementsEditor : IOnUpdate
         return Task.FromResult(true);
     }
 
-    private void ApplyPatches(TradersTable tradersTable, TraderConfig config)
+    private void ApplyPatches(TradersTable tradersTable, SptTraderConfig serverTraderConfig, TraderEditorConfig config)
     {
         foreach ((string traderId, TraderPatch patch) in config.Traders)
         {
-            Trader? trader = tradersTable.GetTrader(new MongoId(traderId));
+            MongoId traderMongoId = new(traderId);
+            Trader? trader = tradersTable.GetTrader(traderMongoId);
             if (trader is null)
             {
                 _logger.Warning($"{LogPrefix}Trader not found: {traderId}");
@@ -51,8 +65,43 @@ public sealed class TraderLevelRequirementsEditor : IOnUpdate
             }
 
             ApplyLoyaltyLevelPatches(trader, patch);
+            ApplyRefreshTimePatch(serverTraderConfig, traderMongoId, patch);
             _logger.Info($"{LogPrefix}Updated {patch.Name ?? traderId}");
         }
+    }
+
+    private void ApplyRefreshTimePatch(SptTraderConfig serverTraderConfig, MongoId traderId, TraderPatch patch)
+    {
+        if (patch.RefreshSeconds is null)
+        {
+            return;
+        }
+
+        string traderName = patch.Name ?? traderId.ToString();
+        if (traderId == Traders.FENCE)
+        {
+            _logger.Warning($"{LogPrefix}Refresh-time settings are not supported for Fence; ignoring settings for {traderName}");
+            return;
+        }
+
+        SPTarkov.Server.Core.Models.Spt.Config.UpdateTime? updateTime =
+            serverTraderConfig.UpdateTime.FirstOrDefault(entry => entry.TraderId == traderId);
+        if (updateTime is null)
+        {
+            _logger.Warning($"{LogPrefix}No refresh-time entry found for {traderName}");
+            return;
+        }
+
+        int min = patch.RefreshSeconds.Min ?? updateTime.Seconds.Min;
+        int max = patch.RefreshSeconds.Max ?? updateTime.Seconds.Max;
+        if (min < 0 || max < 0 || min > max)
+        {
+            _logger.Warning($"{LogPrefix}Invalid refresh-time range for {traderName}: min={min}, max={max}");
+            return;
+        }
+
+        updateTime.Seconds.Min = min;
+        updateTime.Seconds.Max = max;
     }
 
     private void ApplyLoyaltyLevelPatches(Trader trader, TraderPatch patch)
@@ -85,7 +134,7 @@ public sealed class TraderLevelRequirementsEditor : IOnUpdate
     }
 }
 
-public sealed class TraderConfig
+public sealed class TraderEditorConfig
 {
     [JsonPropertyName("traders")]
     public Dictionary<string, TraderPatch> Traders { get; set; } = new();
@@ -98,6 +147,18 @@ public sealed class TraderPatch
 
     [JsonPropertyName("loyaltyLevels")]
     public Dictionary<string, LoyaltyLevelPatch>? LoyaltyLevels { get; set; }
+
+    [JsonPropertyName("refreshSeconds")]
+    public RefreshSecondsPatch? RefreshSeconds { get; set; }
+}
+
+public sealed class RefreshSecondsPatch
+{
+    [JsonPropertyName("min")]
+    public int? Min { get; set; }
+
+    [JsonPropertyName("max")]
+    public int? Max { get; set; }
 }
 
 public sealed class LoyaltyLevelPatch

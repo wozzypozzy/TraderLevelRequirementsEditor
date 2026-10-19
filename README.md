@@ -10,8 +10,7 @@ A very small mod I created to customize trader loyalty level requirements since 
 
 - Changes the reputation or standing required
 
-- Supports configuring individual traders and loyalty levels
-  - you can add custom traders if you'd like, but there's no purpose since you can just modify a custom/modded trader's files directly (this should be obvious but I feel it's worth mentioning regardless)
+- Supports configuring individual traders, loyalty levels, and stock refresh intervals
 
 - Logs missing traders and invalid configuration entries
 
@@ -21,19 +20,35 @@ A very small mod I created to customize trader loyalty level requirements since 
 
    `SPT_Runtime/user/mods`
 
+## Building
+
+The project references assemblies from your SPT installation. Set the `SPT_RUNTIME_PATH` environment variable to your `SPT_Runtime` folder, or pass the path as an MSBuild property:
+
+```powershell
+dotnet build .\TraderLevelRequirementsEditor.csproj --configuration Release -p:SptRuntimePath="C:\path\to\SPT_Runtime"
+```
+
 ## Configuration
 
 Edit:
 
-`config/traders.json`
+`config/traders.jsonc`
 
-Each trader is identified by their trader ID and in-game name. Loyalty levels are represented with numbers `"1"`, `"2"`, `"3"`, and `"4"`.
+Each trader is identified by their trader ID and in-game name. Loyalty levels are represented with numbers `"1"`, `"2"`, `"3"`, and `"4"`. Refresh timers are configured in seconds via `min` and `max` values; omitted values keep the server's existing setting.
+
+Refresh timer values must not be negative, and `min` must not exceed `max`. Use positive values, as zero can cause a trader to refresh immediately (unless that's what you want). Avoid extremely long intervals, as excessively large timestamps may overflow and cause the timer to behave incorrectly.
+
+Avoid adding custom traders to the config. A custom trader's properties can be modified directly so do so there and not here; I haven't tried it myself but I imagine something will break.
 
 ```json
 {
   "traders": {
     "TRADER_ID": {
       "name": "Trader Name",
+      "refreshSeconds": {
+        "min": 3600,
+        "max": 7200
+      },
       "loyaltyLevels": {
         "2": {
           "minLevel": 15,

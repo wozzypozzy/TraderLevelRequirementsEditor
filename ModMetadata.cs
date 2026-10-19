@@ -14,7 +14,7 @@ public record ModMetadata : IModMetadata
 
     public List<string>? Contributors { get; init; }
 
-    public Version Version { get; init; } = new Version("1.0.0");
+    public Version Version { get; init; } = new Version("1.1.0");
 
     public Range SptVersion { get; init; } = new Range("~4.1.0");
 
